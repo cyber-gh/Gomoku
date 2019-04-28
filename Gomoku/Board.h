@@ -58,6 +58,15 @@ public:
 		return winningPlayer;
 	}
 
+	void swapColors() {
+		for (int i = 0; i < 20; i++) {
+			for (int j = 0; j < 23; j++) {
+				if (M[i][j] == 1) M[i][j] = 2;
+				if (M[i][j] == 2) M[i][j] = 1;
+			}
+		}
+	}
+
 	~Board() {}
 };
 

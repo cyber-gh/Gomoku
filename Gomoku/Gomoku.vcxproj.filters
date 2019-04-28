@@ -69,4 +69,7 @@
   <ItemGroup>
     <ResourceCompile Include="Gomoku.rc" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
+  </ItemGroup>
 </Project>

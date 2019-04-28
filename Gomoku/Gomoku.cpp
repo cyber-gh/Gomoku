@@ -11,4 +11,7 @@ GomokuClass::GomokuClass(QWidget *parent)
 	mPix = QPixmap(670, 800);
 	mPix.fill(Qt::white);
 	board = Board();
+	connect(ui.btnSkipTurn, SIGNAL(clicked()), this, SLOT(onBtnSkipTurnClicked()));
+	connect(ui.btnResetGame, SIGNAL(clicked()), this, SLOT(onResetGameClicked()));
+	connect(ui.btnSwapMode, SIGNAL(clicked()), this, SLOT(onBtnSwapModeClicked()));
 }

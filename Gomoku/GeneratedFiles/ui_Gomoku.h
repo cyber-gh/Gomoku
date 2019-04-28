@@ -23,8 +23,10 @@ public:
     QWidget *widget;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout_2;
-    QPushButton *pushButton_2;
-    QPushButton *pushButton;
+    QPushButton *btnSkipTurn;
+    QPushButton *btnSwapMode;
+    QPushButton *btnSwap2Mode;
+    QPushButton *btnResetGame;
 
     void setupUi(QWidget *GomokuClass)
     {
@@ -42,15 +44,25 @@ public:
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        pushButton_2 = new QPushButton(verticalLayoutWidget);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        btnSkipTurn = new QPushButton(verticalLayoutWidget);
+        btnSkipTurn->setObjectName(QString::fromUtf8("btnSkipTurn"));
 
-        verticalLayout_2->addWidget(pushButton_2);
+        verticalLayout_2->addWidget(btnSkipTurn);
 
-        pushButton = new QPushButton(verticalLayoutWidget);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        btnSwapMode = new QPushButton(verticalLayoutWidget);
+        btnSwapMode->setObjectName(QString::fromUtf8("btnSwapMode"));
 
-        verticalLayout_2->addWidget(pushButton);
+        verticalLayout_2->addWidget(btnSwapMode);
+
+        btnSwap2Mode = new QPushButton(verticalLayoutWidget);
+        btnSwap2Mode->setObjectName(QString::fromUtf8("btnSwap2Mode"));
+
+        verticalLayout_2->addWidget(btnSwap2Mode);
+
+        btnResetGame = new QPushButton(verticalLayoutWidget);
+        btnResetGame->setObjectName(QString::fromUtf8("btnResetGame"));
+
+        verticalLayout_2->addWidget(btnResetGame);
 
 
         retranslateUi(GomokuClass);
@@ -61,8 +73,10 @@ public:
     void retranslateUi(QWidget *GomokuClass)
     {
         GomokuClass->setWindowTitle(QApplication::translate("GomokuClass", "Gomoku", nullptr));
-        pushButton_2->setText(QApplication::translate("GomokuClass", "Play game", nullptr));
-        pushButton->setText(QApplication::translate("GomokuClass", "Reset", nullptr));
+        btnSkipTurn->setText(QApplication::translate("GomokuClass", "Skip turn", nullptr));
+        btnSwapMode->setText(QApplication::translate("GomokuClass", "Swap Mode", nullptr));
+        btnSwap2Mode->setText(QApplication::translate("GomokuClass", "Swap2 mode", nullptr));
+        btnResetGame->setText(QApplication::translate("GomokuClass", "Reset", nullptr));
     } // retranslateUi
 
 };
