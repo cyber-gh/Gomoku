@@ -94,8 +94,12 @@ protected:
 	void executeGameOver() {
 		QMessageBox msg;
 		msg.setFixedWidth(200);//TODO needs fixing 
+		
 		int winningPlayer = board.whoWon();
-		msg.setText("Winning Player: " + winningPlayer);
+		std::string toShow = "----  Winning Player ";
+		toShow += std::to_string(winningPlayer);
+		toShow += " --------";
+		msg.setText(QString::fromStdString(toShow));
 		msg.exec();
 		gameLocked = true;
 	}
