@@ -14,4 +14,5 @@ GomokuClass::GomokuClass(QWidget *parent)
 	connect(ui.btnSkipTurn, SIGNAL(clicked()), this, SLOT(onBtnSkipTurnClicked()));
 	connect(ui.btnResetGame, SIGNAL(clicked()), this, SLOT(onResetGameClicked()));
 	connect(ui.btnSwapMode, SIGNAL(clicked()), this, SLOT(onBtnSwapModeClicked()));
+	connect(ui.btnSwap2Mode, SIGNAL(clicked()), this, SLOT(onBtnSwapMode2Clicked()));
 }

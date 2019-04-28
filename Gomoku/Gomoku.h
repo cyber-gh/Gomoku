@@ -18,6 +18,8 @@ public:
 	bool gameLocked = false;
 	bool gameStarted = false;
 	bool swapMode = false;
+	bool swapMode2 = false;
+	bool promptToSwapColorsAfter2Moves = false;
 	Board board;
 	int playerToMove = 1;
 	int moveCnt = 0;
@@ -36,12 +38,61 @@ protected:
 
 		if (event->pos().x() <= 670 && event->pos().y() <= 610) {
 			
-			if (!gameLocked) handleMove(getClosestValidPosition(event->pos()));
+			if (!gameLocked) {
+				handleMove(getClosestValidPosition(event->pos()));
+				moveCnt++;
+				if (moveCnt == 2 && promptToSwapColorsAfter2Moves) {
+					promptToSwapColorsAfter2Moves = false;
+					promptToSwapPlayers();
+				}
+			}
 			else if (swapMode) {
 				handeSwapModeMoves(getClosestValidPosition(event->pos()));
 			}
+			else if (swapMode2) {
+				handeSwapMode2Moves(getClosestValidPosition(event->pos()));
+			}
 			if (!gameStarted && !swapMode) gameStarted = true;
 			update();
+		}
+	}
+
+	void handeSwapMode2Moves(QPoint nextMove) {// TODO code dubplication, should use handeSwapModeMoves here 
+		moveCnt++;
+
+		if (moveCnt == 3) swapPlayer();
+		std::pair<int, int> move;
+		move.first = nextMove.x() / 30;
+		move.second = nextMove.y() / 30;
+		if (board.placeStone(move, playerToMove)) {
+			points.push_back(std::make_pair(nextMove, (playerToMove == 1 ? Qt::black : Qt::red)));
+		}
+		if (moveCnt == 3) {
+			swapMode = false;
+			gameLocked = false;
+			gameStarted = true;
+			promptSwap2ModeOptions();
+		}
+	}
+
+	void promptSwap2ModeOptions() {
+		QMessageBox::StandardButton reply;
+
+		reply = QMessageBox::question(this, "Swap", "Do you want to swap colors(Yes), continue(cancel) or put 2 more stones(apply)?",
+			QMessageBox::Yes | QMessageBox::Apply | QMessageBox::Cancel);
+
+		if (reply == QMessageBox::Yes) {
+			board.swapColors();
+			this->swapColors();
+			swapPlayer();
+			update();
+		}
+		if (reply == QMessageBox::Cancel) {
+			qDebug() << "Cancel clicked";
+		}
+		if (reply == QMessageBox::Apply) {
+			promptToSwapColorsAfter2Moves = true;
+			moveCnt = 0;
 		}
 	}
 
@@ -144,11 +195,15 @@ private slots:
 		swapPlayer();
 	}
 	void onResetGameClicked() {
+		playerToMove = 1;
 		board = Board();
 		points.clear();
 		update();
 		gameLocked = false;
 		gameStarted = false;
+		swapMode = false;
+		swapMode2 = false;
+		promptToSwapColorsAfter2Moves = false;
 		moveCnt = 0;
 	}
 	void onBtnSwapModeClicked() {
@@ -158,6 +213,14 @@ private slots:
 			gameStarted = false;
 		}
 	}
+	void onBtnSwapMode2Clicked() {
+		if (!gameStarted) {
+			swapMode2 = true;
+			gameLocked = true;
+			gameStarted = false;
+		}
+	}
+
 
 private:
 	QPainter painter;
