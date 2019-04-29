@@ -27,6 +27,7 @@ public:
     QPushButton *btnSwapMode;
     QPushButton *btnSwap2Mode;
     QPushButton *btnResetGame;
+    QPushButton *drawButton;
 
     void setupUi(QWidget *GomokuClass)
     {
@@ -64,6 +65,11 @@ public:
 
         verticalLayout_2->addWidget(btnResetGame);
 
+        drawButton = new QPushButton(verticalLayoutWidget);
+        drawButton->setObjectName(QString::fromUtf8("drawButton"));
+
+        verticalLayout_2->addWidget(drawButton);
+
 
         retranslateUi(GomokuClass);
 
@@ -77,6 +83,7 @@ public:
         btnSwapMode->setText(QApplication::translate("GomokuClass", "Swap Mode", nullptr));
         btnSwap2Mode->setText(QApplication::translate("GomokuClass", "Swap2 mode", nullptr));
         btnResetGame->setText(QApplication::translate("GomokuClass", "Reset", nullptr));
+        drawButton->setText(QApplication::translate("GomokuClass", "Set draw", nullptr));
     } // retranslateUi
 
 };

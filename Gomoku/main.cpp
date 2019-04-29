@@ -1,3 +1,8 @@
+/*
+Soltan Gheorhge
+Grupa 142
+*/
+
 #include "stdafx.h"
 #include "Gomoku.h"
 #include <QtWidgets/QApplication>

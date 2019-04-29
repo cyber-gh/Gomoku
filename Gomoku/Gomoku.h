@@ -1,3 +1,8 @@
+/*
+Soltan Gheorhge
+Grupa 142
+*/
+
 #pragma once
 
 #include <QtWidgets/QWidget>
@@ -55,6 +60,7 @@ private slots:
 	void onResetGameClicked();
 	void onBtnSwapModeClicked();
 	void onBtnSwapMode2Clicked();
+	void onBtnDrawClicked();
 
 
 private:

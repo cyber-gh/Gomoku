@@ -1,3 +1,8 @@
+/*
+Soltan Gheorhge
+Grupa 142
+*/
+
 #include "stdafx.h"
 #include "Gomoku.h"
 #include "ui_Gomoku.h"
@@ -15,6 +20,7 @@ GomokuClass::GomokuClass(QWidget *parent)
 	connect(ui.btnResetGame, SIGNAL(clicked()), this, SLOT(onResetGameClicked()));
 	connect(ui.btnSwapMode, SIGNAL(clicked()), this, SLOT(onBtnSwapModeClicked()));
 	connect(ui.btnSwap2Mode, SIGNAL(clicked()), this, SLOT(onBtnSwapMode2Clicked()));
+	connect(ui.drawButton, SIGNAL(clicked()), this, SLOT(onBtnDrawClicked()));
 }
 
 void GomokuClass::swapPlayer() {
@@ -139,6 +145,7 @@ void GomokuClass::executeGameOver() {
 	std::string toShow = "----  Winning Player ";
 	toShow += std::to_string(winningPlayer);
 	toShow += " --------";
+	if (board.getIsDraw()) toShow = "-------- Friendship won --------";
 	msg.setText(QString::fromStdString(toShow));
 	msg.exec();
 	gameLocked = true;
@@ -208,4 +215,13 @@ void GomokuClass::onBtnSwapMode2Clicked() {
 		gameLocked = true;
 		gameStarted = false;
 	}
+}
+
+void GomokuClass::onBtnDrawClicked(){
+	QMessageBox msg;
+
+	std::string toShow = "------ Marked as a draw ----------";
+	msg.setText(QString::fromStdString(toShow));
+	msg.exec();
+	gameLocked = true;
 }

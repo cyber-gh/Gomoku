@@ -1,3 +1,8 @@
+/*
+Soltan Gheorhge
+Grupa 142
+*/
+
 #include "stdafx.h"
 #include "Board.h"
 
@@ -22,6 +27,7 @@ bool Board::validPosition(std::pair<int, int> pos) {
 
 bool Board::placeStone(std::pair<int, int> pos, int playerNr) {
 	if (!validPosition(pos)) return false;
+	moves++;
 	int x = pos.first;
 	int y = pos.second;
 	M[x][y] = playerNr;
@@ -31,6 +37,10 @@ bool Board::placeStone(std::pair<int, int> pos, int playerNr) {
 }
 
 void Board::checkIfWin(std::pair<int, int> pos, int playerNr) {
+	if (moves == 23 * 20) {
+		gameEnded = true;
+		isDraw = true;
+	}
 	int dx[] = { 1,1,-1,-1 };
 	int dy[] = { 1, -1, -1, 1 };
 	for (int k = 0; k < 4; k++) {
